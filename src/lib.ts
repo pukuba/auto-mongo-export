@@ -13,10 +13,10 @@ const lib = async () => {
         if (db === null) {
             throw new Error("DB Cannot Connect")
         }
-        if (type !== "csv" && type !== "CSV" && type !== "json" && type !== "JSON") {
-            throw new Error("type is csv(CSV) or json(JSON)")
+        if (type.toLowerCase() !== "csv" && type.toLowerCase() !== "json") {
+            throw new Error("type is csv or json")
         }
-        if (type === "csv" || type === "CSV") {
+        if (type.toLowerCase() === "csv") {
             schedule = setTimeout(() => {
                 args.forEach(async (name: string) => {
                     await db.collection(name).find({}).toArray()
