@@ -1,0 +1,26 @@
+{
+  "name": "auto-mongodbexport",
+  "version": "1.0.0",
+  "description": "auto MongoDB export",
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "NODE_PATH=src/ nodemon --exec ts-node src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pukuba/Auto-MongoDBExport.git"
+  },
+  "author": "pukuba",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pukuba/Auto-MongoDBExport/issues"
+  },
+  "homepage": "https://github.com/pukuba/Auto-MongoDBExport#readme",
+  "dependencies": {
+    "@types/mongodb": "^3.6.6",
+    "dotenv": "^8.2.0",
+    "mongodb": "^3.6.4",
+    "nodemon": "^2.0.7"
+  }
+}
