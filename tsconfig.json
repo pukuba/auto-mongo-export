@@ -6,9 +6,10 @@
         "outDir": "dist",
         "strict": true,
         "esModuleInterop": true,
-        "baseUrl": "src"
+        "baseUrl": "src",
+        "noImplicitAny": false
     },
     "include": [
-        "src/**/*"
+        "lib/**/*"
     ]
 }

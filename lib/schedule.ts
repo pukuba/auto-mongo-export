@@ -1,4 +1,4 @@
-import DB from "config/connectDB"
+import DB from "./config/connectDB"
 import fs from "fs"
 import converter from "json-2-csv"
 
@@ -9,8 +9,8 @@ const makeFolder = (dir: string) => {
 }
 
 const lib = () => {
-    let schedule: any
-    const createSchedule = async ({ dbHost, ms, path, name, type, work }: { dbHost: string, ms: number, path: string, name: string, type: string, work: string }, ...args: string[]) => {
+    let schedule: any = {}
+    const createSchedule = async ({ dbHost, ms, path, dirName = "dir", type, workName = "work" }: { dbHost: string, ms: number, path: string, dirName: string, type: string, workName: string }, ...args: string[]) => {
         const db = await DB.get(dbHost)
         if (db === null) {
             throw new Error("DB Cannot Connect")
@@ -19,13 +19,13 @@ const lib = () => {
             throw new Error("type is csv or json")
         }
         if (type.toLowerCase() === "csv") {
-            schedule = setInterval(() => {
-                const fileName = new Date().toISOString()
+            schedule[workName] = setInterval(() => {
+                const date = new Date().toISOString()
                     .replace(/T/, ' ')
                     .replace(/\..+/, '')
 
 
-                makeFolder(`${path}/${name}_${fileName}`)
+                makeFolder(`${path}/${dirName}_${date}`)
                 args.forEach(async (collectionName: string) => {
                     let jsonResult = await db.collection(collectionName).find({}).toArray()
 
@@ -37,35 +37,36 @@ const lib = () => {
                         if (err) {
                             throw err
                         }
-                        fs.writeFileSync(`${path}/${name}_${fileName}/${collectionName}.csv`, csv + "")
+                        fs.writeFileSync(`${path}/${dirName}_${date}/${collectionName}.csv`, csv + "")
                     })
                 })
             }, ms)
         }
 
         if (type.toLowerCase() === "json") {
-            schedule = setInterval(() => {
-                const fileName = new Date().toISOString()
+            schedule[workName] = setInterval(() => {
+                const date = new Date().toISOString()
                     .replace(/T/, ' ')
                     .replace(/\..+/, '')
 
-                makeFolder(`${path}/${name}_${fileName}`)
+                makeFolder(`${path}/${dirName}_${date}`)
                 args.forEach(async (collectionName: string) => {
                     const jsonResult = await db.collection(collectionName).find({}).toArray()
 
-                    fs.writeFileSync(`${path}/${name}_${fileName}/${collectionName}.json`, JSON.stringify(jsonResult, null, 4))
+                    fs.writeFileSync(`${path}/${dirName}_${date}/${collectionName}.json`, JSON.stringify(jsonResult, null, 4))
                 })
             }, ms)
         }
     }
 
-    const cancleSchedule = () => {
-        if (schedule) {
-            clearTimeout(schedule)
+    const cancleSchedule = (workName: string) => {
+        if (schedule[workName]) {
+            clearTimeout(schedule[workName])
         }
     }
 
     return { createSchedule, cancleSchedule }
 }
-
+const { createSchedule, cancleSchedule } = lib()
+export { createSchedule, cancleSchedule }
 export default lib()
