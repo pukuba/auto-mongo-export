@@ -2,10 +2,10 @@ import { MongoClient, Db } from "mongodb"
 
 let db: Db | null = null
 const connectDB = () => {
-    let url: string | undefined
-    const connect = async () => {
 
+    const connect = async (url: String) => {
         try {
+            console.log(url)
             const client = await MongoClient.connect(
                 String(url)
                 , {
@@ -20,12 +20,12 @@ const connectDB = () => {
         }
     }
 
-    const get = async () => {
+    const get = async (url: String) => {
         try {
             if (db != null) {
                 return db
             } else {
-                db = await connect()
+                db = await connect(url)
                 return db
             }
         }
@@ -34,7 +34,7 @@ const connectDB = () => {
         }
     }
 
-    return { get, url }
+    return { get }
 }
 
 export default connectDB()
