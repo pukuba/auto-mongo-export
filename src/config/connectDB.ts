@@ -5,7 +5,6 @@ const connectDB = () => {
 
     const connect = async (url: String) => {
         try {
-            console.log(url)
             const client = await MongoClient.connect(
                 String(url)
                 , {

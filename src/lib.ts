@@ -8,10 +8,9 @@ const makeFolder = (dir: string) => {
     }
 }
 
-const lib = async () => {
-    let schedule
-
-    const createSchedule = async ({ dbHost, ms, path, name, type }: { dbHost: string, ms: number, path: string, name: string, type: string }, ...args: string[]) => {
+const lib = () => {
+    let schedule: any
+    const createSchedule = async ({ dbHost, ms, path, name, type, work }: { dbHost: string, ms: number, path: string, name: string, type: string, work: string }, ...args: string[]) => {
         const db = await DB.get(dbHost)
         if (db === null) {
             throw new Error("DB Cannot Connect")
@@ -43,8 +42,30 @@ const lib = async () => {
                 })
             }, ms)
         }
+
+        if (type.toLowerCase() === "json") {
+            schedule = setInterval(() => {
+                const fileName = new Date().toISOString()
+                    .replace(/T/, ' ')
+                    .replace(/\..+/, '')
+
+                makeFolder(`${path}/${name}_${fileName}`)
+                args.forEach(async (collectionName: string) => {
+                    const jsonResult = await db.collection(collectionName).find({}).toArray()
+
+                    fs.writeFileSync(`${path}/${name}_${fileName}/${collectionName}.json`, JSON.stringify(jsonResult, null, 4))
+                })
+            }, ms)
+        }
     }
-    return { createSchedule }
+
+    const cancleSchedule = () => {
+        if (schedule) {
+            clearTimeout(schedule)
+        }
+    }
+
+    return { createSchedule, cancleSchedule }
 }
 
 export default lib()
