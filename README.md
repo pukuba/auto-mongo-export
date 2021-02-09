@@ -1,5 +1,7 @@
 # MongoDB Auto Export CSV, JSON
 
+[![Build Status](https://travis-ci.org/pukuba/auto-mongo-export.svg?branch=master)](https://travis-ci.org/pukuba/auto-mongo-export)
+
 ## 사용법
 
 `몽고디비 자동 내보내기 스케줄 생성`
