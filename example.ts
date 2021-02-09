@@ -1,5 +1,4 @@
 import lib from "./lib"
-import path from "path"
 import { MongoClient } from "mongodb"
 const main = async () => {
     const client = await MongoClient.connect(
@@ -17,7 +16,7 @@ const main = async () => {
         type: "json",
         dbHost: "mongodb://localhost:27017/study",
         dirName: "myDB",
-        path: path.join(__dirname, './'),
+        path: "./"
         workName: "myWork1"
     }, ...collections)
 
