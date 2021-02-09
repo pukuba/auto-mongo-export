@@ -67,6 +67,5 @@ const lib = () => {
 
     return { createSchedule, cancleSchedule }
 }
-const { createSchedule, cancleSchedule } = lib()
-export { createSchedule, cancleSchedule }
+
 export default lib()

@@ -1,8 +1,8 @@
 {
-  "name": "auto-mongodbexport",
+  "name": "auto-mongo-export",
   "version": "1.0.0",
   "description": "auto MongoDB export",
-  "main": "src/index.ts",
+  "main": "dist/index.js",
   "scripts": {
     "start": "NODE_PATH=src/ nodemon --exec ts-node src/index.ts",
     "example": "ts-node example.ts",
@@ -19,6 +19,9 @@
     "url": "https://github.com/pukuba/Auto-MongoDBExport/issues"
   },
   "homepage": "https://github.com/pukuba/Auto-MongoDBExport#readme",
+  "files": [
+    "dist/"
+  ],
   "dependencies": {
     "@types/mongodb": "^3.6.3",
     "dotenv": "^8.2.0",

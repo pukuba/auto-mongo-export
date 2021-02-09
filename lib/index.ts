@@ -1,4 +1,5 @@
-import schedule, { createSchedule, cancleSchedule } from "./schedule"
+import schedule from "./schedule"
+const { cancleSchedule, createSchedule } = schedule
 
-export { createSchedule, cancleSchedule }
+export { cancleSchedule, createSchedule }
 export default schedule
