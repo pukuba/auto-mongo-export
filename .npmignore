@@ -2,3 +2,5 @@ lib/
 node_modules/
 example.ts
 test/
+.travis.yml
+tsconfig.json
