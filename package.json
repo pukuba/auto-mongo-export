@@ -1,6 +1,6 @@
 {
   "name": "auto-mongo-export",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "auto MongoDB export",
   "main": "dist/index.js",
   "scripts": {
@@ -11,17 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pukuba/Auto-MongoDBExport.git"
+    "url": "git+https://github.com/pukuba/auto-mongo-export.git"
   },
   "author": "pukuba",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/pukuba/Auto-MongoDBExport/issues"
+    "url": "https://github.com/pukuba/auto-mongo-export/issues"
   },
-  "homepage": "https://github.com/pukuba/Auto-MongoDBExport#readme",
-  "files": [
-    "dist/"
-  ],
+  "homepage": "https://github.com/pukuba/auto-mongo-export#readme",
   "dependencies": {
     "@types/mongodb": "^3.6.3",
     "dotenv": "^8.2.0",
