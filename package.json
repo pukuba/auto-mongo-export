@@ -6,7 +6,7 @@
   "scripts": {
     "start": "NODE_PATH=src/ nodemon --exec ts-node src/index.ts",
     "example": "ts-node example.ts",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "ts-mocha -p ./tsconfig.json test/*.test.ts --exit",
     "build": "tsc -p ."
   },
   "repository": {
@@ -23,7 +23,10 @@
     "@types/mongodb": "^3.6.3",
     "dotenv": "^8.2.0",
     "json-2-csv": "^3.10.2",
+    "mocha": "^8.2.1",
     "mongodb": "^3.6.3",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "ts-mocha": "^8.0.0",
+    "typescript": "^4.1.3"
   }
 }
