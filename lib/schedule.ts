@@ -10,7 +10,7 @@ const makeFolder = (dir: string) => {
 
 const lib = () => {
     let schedule: any = {}
-    const createSchedule = async ({ dbHost, ms, path, dirName = "dir", type, workName = "work" }: { dbHost: string, ms: number, path: string, dirName: string, type: string, workName: string }, ...args: string[]) => {
+    const createSchedule = async ({ dbHost, ms, path, dirName = "dir", type = "json", workName = "work" }: { dbHost: string, ms: number, path: string, dirName: string, type: string, workName: string }, ...args: string[]) => {
         const db = await DB.get(dbHost)
         if (db === null) {
             throw new Error("DB Cannot Connect")
@@ -20,9 +20,7 @@ const lib = () => {
         }
         if (type.toLowerCase() === "csv") {
             schedule[workName] = setInterval(() => {
-                const date = new Date().toISOString()
-                    .replace(/T/, ' ')
-                    .replace(/\..+/, '')
+                const date = new Date().toLocaleString()
 
 
                 makeFolder(`${path}/${dirName}_${date}`)
@@ -45,9 +43,7 @@ const lib = () => {
 
         if (type.toLowerCase() === "json") {
             schedule[workName] = setInterval(() => {
-                const date = new Date().toISOString()
-                    .replace(/T/, ' ')
-                    .replace(/\..+/, '')
+                const date = new Date().toLocaleString()
 
                 makeFolder(`${path}/${dirName}_${date}`)
                 args.forEach(async (collectionName: string) => {
@@ -59,13 +55,13 @@ const lib = () => {
         }
     }
 
-    const cancleSchedule = (workName: string) => {
+    const deleteSchedule = (workName: string) => {
         if (schedule[workName]) {
             clearTimeout(schedule[workName])
         }
     }
 
-    return { createSchedule, cancleSchedule }
+    return { createSchedule, deleteSchedule }
 }
 
 export default lib()

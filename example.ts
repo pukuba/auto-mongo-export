@@ -17,12 +17,13 @@ const main = async () => {
         type: "json",
         dbHost: "mongodb://localhost:27017/study",
         dirName: "myDB",
-        path: path.join(__dirname, './log'),
+        path: path.join(__dirname, './'),
         workName: "myWork1"
     }, ...collections)
 
     setTimeout(() => {
-        lib.cancleSchedule("myWork1")
+        lib.deleteSchedule("myWork1")
     }, 33333)
+
 }
 main()
