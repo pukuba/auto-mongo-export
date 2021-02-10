@@ -16,7 +16,7 @@ const main = async () => {
         type: "json",
         dbHost: "mongodb://localhost:27017/study",
         dirName: "myDB",
-        path: "./"
+        path: "./",
         workName: "myWork1"
     }, ...collections)
 
