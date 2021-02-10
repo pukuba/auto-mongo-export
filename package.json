@@ -1,6 +1,6 @@
 {
   "name": "auto-mongo-export",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "auto MongoDB export",
   "main": "dist/index.js",
   "scripts": {
@@ -9,6 +9,15 @@
     "test": "ts-mocha -p ./tsconfig.json test/*.test.ts --exit",
     "build": "tsc -p ."
   },
+  "keywords": [
+    "mongodb",
+    "export",
+    "csv",
+    "json",
+    "auto-export",
+    "mongodb-export",
+    "mongo-export"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pukuba/auto-mongo-export.git"
