@@ -53,15 +53,29 @@ const lib = () => {
                 })
             }, ms)
         }
+
+        return true
     }
 
     const deleteSchedule = (workName: string) => {
+
         if (schedule[workName]) {
             clearTimeout(schedule[workName])
+            delete schedule[workName]
+            return true
         }
+        return false
     }
 
-    return { createSchedule, deleteSchedule }
+    const getSchedules = () => {
+        const res: string[] = []
+        for (const key in schedule) {
+            res.push(key)
+        }
+        return res
+    }
+
+    return { createSchedule, deleteSchedule, getSchedules }
 }
 
 export default lib()

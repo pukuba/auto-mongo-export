@@ -21,8 +21,11 @@ const main = async () => {
     }, ...collections)
 
     setTimeout(() => {
-        lib.deleteSchedule("myWork1")
-    }, 33333)
+        console.log(lib.getSchedules())
+    }, 20000)
 
+    setTimeout(() => {
+        lib.deleteSchedule("myWork1")
+    }, 30000)
 }
 main()

@@ -1,5 +1,5 @@
 import schedule from "./schedule"
-const { deleteSchedule, createSchedule } = schedule
+const { deleteSchedule, createSchedule, getSchedules } = schedule
 
-export { deleteSchedule, createSchedule }
+export { deleteSchedule, createSchedule, getSchedules }
 export default schedule
