@@ -1,6 +1,6 @@
 {
   "name": "auto-mongo-export",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "auto MongoDB export",
   "main": "dist/index.js",
   "scripts": {
